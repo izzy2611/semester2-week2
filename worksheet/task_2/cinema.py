@@ -18,6 +18,20 @@ def customer_tickets(conn, customer_id):
     Include only tickets purchased by the given customer_id.
     Order results by film title alphabetically.
     """
+    query = '''
+            SELECT film_title, screen, price 
+            FROM customers 
+            JOIN tickets ON customer_id=tickets.customer_id
+            JOIN screenings ON tickets.screening_id=screening_id
+            JOIN films ON screening.film_id=film_id
+            WHERE customer_id = customer_id
+
+            '''
+    cursor = db.execute(query)
+    for customer in cursor:
+        print(f"Title: {customer[0]} Screen: {customer[1]} Price: {customer[3]}")
+
+    return
     pass
 
 

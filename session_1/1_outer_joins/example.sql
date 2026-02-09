@@ -16,8 +16,12 @@ Courses LEFT JOIN StudentCourses
 ON Courses.id=StudentCourses.course_id
 GROUP BY name HAVING TotalStudents<20;
 
-SELECT Courses.name, COUNT(*) 
+SELECT Courses.name, COUNT(*) AS Total
 FROM Courses 
 JOIN StudentCourses ON Courses.id=StudentCourses.course_id 
 JOIN Students ON StudentCourses.Student_id = Students.id
 GROUP BY Courses.name;
+
+SELECT COUNT(Student_id) AS Total_Students FROM Courses 
+    JOIN StudentCourses ON Courses.id=StudentCourses.course_id 
+    JOIN Students ON StudentCourses.Student_id = Students.id; 
